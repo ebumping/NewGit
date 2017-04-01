@@ -68,8 +68,11 @@ public class BookAssignment {
 		BookAssignment ba = new BookAssignment();
 		ba.loadBooks();
 		ba.list();
+		//display the order as is
 		ba.sortAuthor();
+		//display the list sorted by author
 		ba.sortDate();
+		//display the list sorted by publish date chronologically
 	}
 	
 }
