@@ -9,15 +9,19 @@ import java.util.Date;
 public class Book {
 	private String title;
 	private String author;
+	private String fAuthor;
+	//Chose to use first name as a separate variable to ensure functional sorting by last name
 	private long isbn;
 	private String publisher;
 	private Date pubDate;
+
 	
 	DateFormat df = new SimpleDateFormat("MM/DD/YYYY");
-	
-	public Book(String title, String author, long isbn, String publisher, Date pubDate){
+	//allows formatting the pubDate in toString
+	public Book(String title,String fAuthor, String author, long isbn, String publisher, Date pubDate){
 		this.title = title;
 		this.author = author;
+		this.fAuthor = fAuthor;
 		this.isbn = isbn;
 		this.publisher = publisher;
 		this.pubDate = pubDate;
@@ -64,7 +68,17 @@ public class Book {
 	}
 	
 	public String toString(){
-		return "Title: " + title + "\nAuthor: " + author + "\nISBN : " + isbn + "\nPublisher : " + publisher + "\nPublishing Date : " + pubDate + "\n";
+		return "Title: " + title + "\nAuthor: " + fAuthor + " " + author + "\nISBN: " + isbn + "\nPublisher: " + 
+			publisher + "\nPublishing Date: " + DateFormat.getDateInstance(DateFormat.MEDIUM).format(pubDate) + "\n";
+												//This formats pubDate to remove instance of time
+	}
+
+	public String getfAuthor() {
+		return fAuthor;
+	}
+
+	public void setfAuthor(String fAuthor) {
+		this.fAuthor = fAuthor;
 	}
 	
 }
