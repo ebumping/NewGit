@@ -13,10 +13,9 @@ import javax.swing.JSeparator;
 public class StudentUI extends StudentDatabase{
 
 	private JFrame frame;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-
+	private JTextField Student;
+	private JTextField Assignment;
+	private JTextField Grade;
 	/**
 	 * Launch the application.
 	 */
@@ -38,6 +37,7 @@ public class StudentUI extends StudentDatabase{
 	 */
 	public StudentUI() {
 		initialize();
+		loadStudents();
 	}
 
 	/**
@@ -49,28 +49,28 @@ public class StudentUI extends StudentDatabase{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		textField = new JTextField();
-		textField.setBounds(338, 11, 86, 20);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
+		Student = new JTextField();
+		Student.setBounds(338, 11, 86, 20);
+		frame.getContentPane().add(Student);
+		Student.setColumns(10);
 		
 		JLabel lblStudent = new JLabel("Student");
 		lblStudent.setBounds(282, 14, 46, 14);
 		frame.getContentPane().add(lblStudent);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(338, 42, 86, 20);
-		frame.getContentPane().add(textField_1);
-		textField_1.setColumns(10);
+		Assignment = new JTextField();
+		Assignment.setBounds(338, 42, 86, 20);
+		frame.getContentPane().add(Assignment);
+		Assignment.setColumns(10);
 		
 		JLabel lblAssignment = new JLabel("Assignment");
 		lblAssignment.setBounds(263, 45, 65, 14);
 		frame.getContentPane().add(lblAssignment);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(338, 73, 86, 20);
-		frame.getContentPane().add(textField_2);
-		textField_2.setColumns(10);
+		Grade = new JTextField();
+		Grade.setBounds(338, 73, 86, 20);
+		frame.getContentPane().add(Grade);
+		Grade.setColumns(10);
 		
 		JLabel lblGrade = new JLabel("Grade");
 		lblGrade.setBounds(282, 76, 37, 14);
@@ -79,6 +79,13 @@ public class StudentUI extends StudentDatabase{
 		JButton btnEnter = new JButton("Enter");
 		btnEnter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Students x = new Students(Student.getText(), Assignment.getText(), grade);
+				try {
+					addStudent(x);
+				}catch(Exception e1){
+					e1.printStackTrace();
+					
+				}
 			}
 		});
 		btnEnter.setBounds(335, 227, 89, 23);
@@ -93,6 +100,11 @@ public class StudentUI extends StudentDatabase{
 		frame.getContentPane().add(btnDelete);
 		
 		JButton btnDisplayStudents = new JButton("Display Students");
+		btnDisplayStudents.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				list();
+			}
+		});
 		btnDisplayStudents.setBounds(10, 227, 120, 23);
 		frame.getContentPane().add(btnDisplayStudents);
 	}
