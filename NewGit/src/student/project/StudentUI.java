@@ -21,6 +21,7 @@ public class StudentUI extends StudentDB {
 	private JButton btnNewButton;
 	private JButton btnNewButton_1;
 	private JTextField replace;
+	private JLabel lblNewLabel;
 
 	/**
 	 * Launch the application.
@@ -172,7 +173,7 @@ public class StudentUI extends StudentDB {
 		btnDeleteHw.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
-					modAssignment(txtAssignment.getText(), replace.getText());
+					delAssignment(txtAssignment.getText());
 				}catch(Exception e1){
 					e1.printStackTrace();
 				}
@@ -184,7 +185,11 @@ public class StudentUI extends StudentDB {
 		btnNewButton_1 = new JButton("Edit Assignment");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				try{
+					modAssignment(txtAssignment.getText(), replace.getText());
+				}catch(Exception e1){
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnNewButton_1.setBounds(288, 194, 136, 23);
@@ -198,5 +203,13 @@ public class StudentUI extends StudentDB {
 		JLabel lblReplaceW = new JLabel("Replace w/");
 		lblReplaceW.setBounds(267, 107, 61, 14);
 		frame.getContentPane().add(lblReplaceW);
+		
+		lblNewLabel = new JLabel("<html>" + 
+				"Enter the student or \rassinment you wish to \nmodify "
+				+ "and use the 'replace' field to specify the new ID or assignment" 
+				+ "</html>");
+				//Use HTML in the JLabel in order to wrap text.
+		lblNewLabel.setBounds(165, 146, 113, 105);
+		frame.getContentPane().add(lblNewLabel);
 	}
 }
