@@ -86,12 +86,16 @@ public class StudentUI extends StudentDB {
 		JButton btnEdit = new JButton("Enter Grade");
 		btnEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					grade(txtStudent.getText(), txtAssignment.getText(), Integer.parseInt(txtGrade.getText()));
-				} catch (NumberFormatException e1) {
-					// in the case that the value in grade field is not an
-					// integer this exception is thrown
-					e1.printStackTrace();
+				if (Integer.parseInt(txtGrade.getText()) > 100) {
+					System.out.println("100 is the highest grade a student can recieve");
+				} else {
+					try {
+						grade(txtStudent.getText(), txtAssignment.getText(), Integer.parseInt(txtGrade.getText()));
+					} catch (NumberFormatException e1) {
+						// in the case that the value in grade field is not an
+						// integer this exception is thrown
+						e1.printStackTrace();
+					}
 				}
 			}
 		});
@@ -110,9 +114,9 @@ public class StudentUI extends StudentDB {
 		JButton btnEdit_1 = new JButton("Edit Student");
 		btnEdit_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//StudentEdit se = new StudentEdit();
-				try {				
-						modStudent(txtStudent.getText(), replace.getText());
+				// StudentEdit se = new StudentEdit();
+				try {
+					modStudent(txtStudent.getText(), replace.getText());
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
@@ -133,13 +137,13 @@ public class StudentUI extends StudentDB {
 		btnAddStudent = new JButton("Create Student");
 		btnAddStudent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(txtStudent.getText().isEmpty()){
+				if (txtStudent.getText().isEmpty()) {
 					System.out.println("Student is a required field");
-				}else{
-				try {
-					addStudent(txtStudent.getText());
-				} catch (NumberFormatException e1) {
-					e1.printStackTrace();
+				} else {
+					try {
+						addStudent(txtStudent.getText());
+					} catch (NumberFormatException e1) {
+						e1.printStackTrace();
 					}
 				}
 			}
@@ -150,73 +154,71 @@ public class StudentUI extends StudentDB {
 		btnNewButton = new JButton("Create Assignment");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(txtAssignment.getText().isEmpty()){
+				if (txtAssignment.getText().isEmpty()) {
 					System.out.println("Assignment is a required field");
-				}else{
-				try {
-					createAssignment(txtStudent.getText(), txtAssignment.getText());
-				} catch (Exception e1) {
-					e1.printStackTrace();
+				} else {
+					try {
+						createAssignment(txtStudent.getText(), txtAssignment.getText());
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
 				}
-			}
 			}
 		});
 		btnNewButton.setBounds(10, 41, 139, 23);
 		frame.getContentPane().add(btnNewButton);
-		
+
 		JButton btnDelete = new JButton("Delete Student");
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try{
+				try {
 					delStudent(txtStudent.getText());
-				}catch(Exception e1){
+				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 			}
 		});
 		btnDelete.setBounds(159, 10, 105, 23);
 		frame.getContentPane().add(btnDelete);
-		
+
 		JButton btnDeleteHw = new JButton("Delete HW");
 		btnDeleteHw.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try{
+				try {
 					delAssignment(txtAssignment.getText());
-				}catch(Exception e1){
+				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 			}
 		});
 		btnDeleteHw.setBounds(158, 41, 106, 23);
 		frame.getContentPane().add(btnDeleteHw);
-		
+
 		btnNewButton_1 = new JButton("Edit Assignment");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try{
+				try {
 					modAssignment(txtAssignment.getText(), replace.getText());
-				}catch(Exception e1){
+				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 			}
 		});
 		btnNewButton_1.setBounds(288, 194, 136, 23);
 		frame.getContentPane().add(btnNewButton_1);
-		
+
 		replace = new JTextField();
 		replace.setBounds(338, 104, 86, 20);
 		frame.getContentPane().add(replace);
 		replace.setColumns(10);
-		
+
 		JLabel lblReplaceW = new JLabel("Replace w/");
 		lblReplaceW.setBounds(267, 107, 61, 14);
 		frame.getContentPane().add(lblReplaceW);
-		
-		lblNewLabel = new JLabel("<html>" + 
-				"Enter the student or \rassinment you wish to \nmodify "
-				+ "and use the 'replace' field to specify the new ID or assignment" 
-				+ "</html>");
-				//Use HTML in the JLabel in order to wrap text.
+
+		lblNewLabel = new JLabel("<html>" + "Enter the student or \rassinment you wish to \nmodify "
+				+ "and use the 'replace' field to specify the new ID or assignment" + "</html>");
+		// Use HTML in the JLabel in order to wrap text.
 		lblNewLabel.setBounds(165, 146, 113, 105);
 		frame.getContentPane().add(lblNewLabel);
 	}

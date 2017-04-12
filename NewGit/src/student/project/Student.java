@@ -27,14 +27,5 @@ public class Student {
 	public String toString(){
 		return studentID.toString();
 	}
-	
-	/*public Student(String studentID){
-		this.studentID = studentID;
-	}*/
-	
-	/*public Student(String studentID, String assignment){
-		this.studentID = studentID;
-		this.assignment = assignment;
-	}*/
 
 }
