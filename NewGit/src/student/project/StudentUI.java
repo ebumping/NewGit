@@ -133,10 +133,14 @@ public class StudentUI extends StudentDB {
 		btnAddStudent = new JButton("Create Student");
 		btnAddStudent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(txtStudent.getText().isEmpty()){
+					System.out.println("Student is a required field");
+				}else{
 				try {
 					addStudent(txtStudent.getText());
 				} catch (NumberFormatException e1) {
 					e1.printStackTrace();
+					}
 				}
 			}
 		});
@@ -146,11 +150,15 @@ public class StudentUI extends StudentDB {
 		btnNewButton = new JButton("Create Assignment");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(txtAssignment.getText().isEmpty()){
+					System.out.println("Assignment is a required field");
+				}else{
 				try {
 					createAssignment(txtStudent.getText(), txtAssignment.getText());
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
+			}
 			}
 		});
 		btnNewButton.setBounds(10, 41, 139, 23);
