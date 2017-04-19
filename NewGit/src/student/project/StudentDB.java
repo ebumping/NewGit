@@ -8,7 +8,7 @@ import java.util.Map;
 public class StudentDB {
 	public List<String> students = new ArrayList<String>();
 	public Map<String, String> assignment = new HashMap<String, String>();
-	public Map<String, Integer> grades = new HashMap<String, Integer>();
+	public Map<Map<String, String>, Integer> grades = new HashMap<Map<String, String>, Integer>();
 
 	public void loadStudents() {
 		students.add("Dylan");
@@ -70,9 +70,10 @@ public class StudentDB {
 	}
 
 	public void grade(String student, String hw, int grade) {
-
-		grades.put(assignment.get(student), grade);
-
+		for(String x : students){
+			Map<String, String> m = new HashMap<String, String>();
+		grades.put(m, grade);
+		}
 		// this method will input a grade for the specified assignment of the
 		// specified student
 	}
@@ -80,7 +81,7 @@ public class StudentDB {
 	public void showGrade(String student, String hw) {
 		for (String x : students) {
 			if (student.equals(x)) {
-				System.out.println(grades.get(assignment.get(student)));
+				System.out.println(grades.get(assignment));
 			}
 		}
 	}
@@ -91,10 +92,13 @@ public class StudentDB {
 		db.addStudent("Nova");
 		db.list();
 		db.createAssignment("Kyle", "First assignment");
+		System.out.println(db.assignment.values());
+		db.createAssignment("Kyle", "First");
 		System.out.println(db.assignment.get("Kyle"));
 		db.grade("Kyle", "First assignment", 100);
-		db.showGrade("Dylan", "First assignment");
+		db.showGrade("Kyle", "First assignment");
 		db.modStudent("Kyle", "K");
-		db.list();
+		System.out.println(db.assignment.keySet());
+		//db.list();
 	}
 }
