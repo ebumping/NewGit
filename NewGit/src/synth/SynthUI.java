@@ -3,6 +3,7 @@ package synth;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.sound.midi.Instrument;
 import javax.sound.midi.MidiChannel;
 import javax.sound.midi.MidiSystem;
 import javax.sound.midi.MidiUnavailableException;
@@ -12,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class SynthUI extends Synth1{
+	//Synth1 syn = new Synth1();
 
 	private JFrame frame;
 
@@ -54,12 +56,18 @@ public class SynthUI extends Synth1{
 				try {
 					synth = MidiSystem.getSynthesizer();
 					synth.open();
+					MidiChannel[] mc = synth.getChannels();
+					Instrument[] inst = synth.getDefaultSoundbank().getInstruments();
+					synth.loadInstrument(inst[2]);
+					//final MidiChannel[] mc = synth.getChannels();
+					mc[1].noteOn(60, 300);
+					System.out.println(inst);
+					System.out.println(mc);
 				} catch (MidiUnavailableException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				final MidiChannel[] mc = synth.getChannels();
-				mc[5].noteOn(6, 300);
+
 			}
 		});
 		button.setBounds(10, 227, 89, 23);

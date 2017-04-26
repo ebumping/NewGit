@@ -173,10 +173,10 @@ public class Synth1 implements Synthesizer{
 	}
 	
 	public static void main(String[] args) throws MidiUnavailableException{
-		Synthesizer synth = MidiSystem.getSynthesizer();
+		/*Synthesizer synth = MidiSystem.getSynthesizer();
 		synth.open();
 		final MidiChannel[] mc = synth.getChannels();
 		Instrument[] inst = synth.getDefaultSoundbank().getInstruments();
-		synth.loadInstrument(inst[90]);
+		synth.loadInstrument(inst[80]);*/
 	}
 }
