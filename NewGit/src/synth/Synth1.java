@@ -1,20 +1,30 @@
 package synth;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import javax.sound.midi.Instrument;
+import javax.sound.midi.InvalidMidiDataException;
 import javax.sound.midi.MidiChannel;
 import javax.sound.midi.MidiSystem;
 import javax.sound.midi.MidiUnavailableException;
 import javax.sound.midi.Patch;
 import javax.sound.midi.Receiver;
+import javax.sound.midi.ShortMessage;
 import javax.sound.midi.Soundbank;
 import javax.sound.midi.Synthesizer;
 import javax.sound.midi.Transmitter;
 import javax.sound.midi.VoiceStatus;
-//import javax.sound.midi.Soundbank;
+import javax.sound.midi.Soundbank;
 
 public class Synth1 implements Synthesizer{
+	
+	private ShortMessage message = 
+			new ShortMessage();
+	public Synthesizer synth;
+	
+	private Receiver receiver;
 
 	@Override
 	public Info getDeviceInfo() {
@@ -171,12 +181,54 @@ public class Synth1 implements Synthesizer{
 		// TODO Auto-generated method stub
 		
 	}
+	//This constructor is for soundbank testing
+	public Synth1(){
+		try{
+			synth = MidiSystem.getSynthesizer();
+			synth.open();
+			receiver = synth.getReceiver();
+		}catch (MidiUnavailableException e1){
+			e1.printStackTrace();
+		}
+	}
 	
-	public static void main(String[] args) throws MidiUnavailableException{
-		/*Synthesizer synth = MidiSystem.getSynthesizer();
-		synth.open();
-		final MidiChannel[] mc = synth.getChannels();
-		Instrument[] inst = synth.getDefaultSoundbank().getInstruments();
-		synth.loadInstrument(inst[80]);*/
+	private void setShortMessage(int onOrOff, int note){
+		try{
+			message.setMessage(onOrOff, 0, note, 70);
+		}catch(InvalidMidiDataException e1){
+			e1.printStackTrace();
+		}
+	}
+
+	public void playNote(int note, int duration){
+		setShortMessage(ShortMessage.NOTE_ON, note);
+		receiver.send(message, -1);
+		try{
+			Thread.sleep(duration);
+		} catch (InterruptedException e){
+			e.printStackTrace();
+		}
+		setShortMessage(ShortMessage.NOTE_OFF, note);
+		receiver.send(message, -1);
+	}
+	
+	public void setInstrument(int instrument, Soundbank soundbank){
+		synth.unloadAllInstruments(soundbank);
+		synth.loadAllInstruments(soundbank);
+		synth.getChannels()[0].programChange(instrument);
+	}
+	
+	public void playOctave(int baseNote){
+		for (int i = 0; i<13; i++){
+			playNote(baseNote + i, 200);
+		}
+	}
+	
+	public static void main(String[] args) throws IOException, InvalidMidiDataException{
+		Synth1 synth1 = new Synth1();
+		//synth1.setInstrument(3, MidiSystem.getSoundbank(new File("C://Program Files//Java//jdk1.8.0_101//jre//lib//audio//soundbank.gm")));
+		synth1.setInstrument(3, MidiSystem.getSoundbank(new File("soundbank.gm")));
+		synth1.playOctave(60);
+		
 	}
 }

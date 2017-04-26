@@ -14,4 +14,10 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<variableList>
+		<variable>
+			<name>Soundbank</name>
+			<value>file:/C:/Users/sdylanjeffery/Desktop/Audio/soundbank.gm</value>
+		</variable>
+	</variableList>
 </projectDescription>
