@@ -15,10 +15,10 @@ import java.awt.Color;
 import javax.sound.midi.Soundbank;;
 
 public class SynthUI extends Synth1{
-	//Synth1 syn = new Synth1();
 
 	private JFrame frame;
 	int r = 60;
+	//r is the root note that our minor scale will be based off of
 	/**
 	 * Launch the application.
 	 */
@@ -52,6 +52,7 @@ public class SynthUI extends Synth1{
 		frame.getContentPane().setLayout(null);
 		
 		JButton button = new JButton("1");
+		//1 is our root note
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Synthesizer synth = null;
@@ -61,9 +62,8 @@ public class SynthUI extends Synth1{
 					Instrument[] inst = synth.getDefaultSoundbank().getInstruments();
 					synth.loadInstrument(inst[50]);
 					synth.open();
-					//final MidiChannel[] mc = synth.getChannels();
 					mc[2].noteOn(r, 300);
-					System.out.println(synth.getLoadedInstruments());
+					//Play root note on midi channel 2 at 300 velocity
 				} catch (MidiUnavailableException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -71,6 +71,8 @@ public class SynthUI extends Synth1{
 
 			}
 		});
+		
+		
 		button.setBounds(10, 227, 74, 23);
 		frame.getContentPane().add(button);
 		
@@ -84,9 +86,8 @@ public class SynthUI extends Synth1{
 					Instrument[] inst = synth.getDefaultSoundbank().getInstruments();
 					synth.loadInstrument(inst[3]);
 					synth.open();
-					//final MidiChannel[] mc = synth.getChannels();
 					mc[2].noteOn(r+2, 300);
-					System.out.println(synth.getLoadedInstruments());
+					//root note +2 is the II of our minor scale
 				} catch (MidiUnavailableException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -108,9 +109,7 @@ public class SynthUI extends Synth1{
 					Instrument[] inst = synth.getDefaultSoundbank().getInstruments();
 					synth.loadInstrument(inst[3]);
 					synth.open();
-					//final MidiChannel[] mc = synth.getChannels();
 					mc[2].noteOn(r+3, 300);
-					System.out.println(synth.getLoadedInstruments());
 				} catch (MidiUnavailableException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -130,9 +129,7 @@ public class SynthUI extends Synth1{
 					Instrument[] inst = synth.getDefaultSoundbank().getInstruments();
 					synth.loadInstrument(inst[3]);
 					synth.open();
-					//final MidiChannel[] mc = synth.getChannels();
 					mc[2].noteOn(r+5, 300);
-					System.out.println(synth.getLoadedInstruments());
 				} catch (MidiUnavailableException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -152,9 +149,7 @@ public class SynthUI extends Synth1{
 					Instrument[] inst = synth.getDefaultSoundbank().getInstruments();
 					synth.loadInstrument(inst[3]);
 					synth.open();
-					//final MidiChannel[] mc = synth.getChannels();
 					mc[2].noteOn(r+7, 300);
-					System.out.println(synth.getLoadedInstruments());
 				} catch (MidiUnavailableException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -175,9 +170,7 @@ public class SynthUI extends Synth1{
 					Instrument[] inst = synth.getDefaultSoundbank().getInstruments();
 					synth.loadInstrument(inst[3]);
 					synth.open();
-					//final MidiChannel[] mc = synth.getChannels();
 					mc[2].noteOn(r+8, 300);
-					System.out.println(synth.getLoadedInstruments());
 				} catch (MidiUnavailableException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -197,9 +190,7 @@ public class SynthUI extends Synth1{
 					Instrument[] inst = synth.getDefaultSoundbank().getInstruments();
 					synth.loadInstrument(inst[3]);
 					synth.open();
-					//final MidiChannel[] mc = synth.getChannels();
 					mc[2].noteOn(r+10, 300);
-					System.out.println(synth.getLoadedInstruments());
 				} catch (MidiUnavailableException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -219,9 +210,7 @@ public class SynthUI extends Synth1{
 					Instrument[] inst = synth.getDefaultSoundbank().getInstruments();
 					synth.loadInstrument(inst[3]);
 					synth.open();
-					//final MidiChannel[] mc = synth.getChannels();
 					mc[2].noteOn(r+12, 300);
-					System.out.println(synth.getLoadedInstruments());
 				} catch (MidiUnavailableException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
